@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ryanwarsaw/parakeet#readme",
   "dependencies": {
     "@slack/client": "^3.15.0",
+    "curriculum-tools": "git+https://github.com/ryanwarsaw/curriculum-tools.git",
     "dotenv": "^4.0.0"
   }
 }
