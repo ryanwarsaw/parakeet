@@ -5,6 +5,7 @@ const path = require("path");
 const { SlackBot } = require("./bot");
 
 let app = express();
+let bot = new SlackBot();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -29,7 +30,7 @@ app.post("/commands/enki", (req, res) => {
     return res.status(401).end(errMessage);
   }
 
-  console.log(req.body);
+  // TODO: Command handler for bot called here.
   res.status(200).end();
 });
 
@@ -38,20 +39,5 @@ app.post("/commands/enki", (req, res) => {
  **/
 app.listen(process.env.PORT, (err) => {
   if (err) throw err;
-
   console.log(`🍃  Parakeet web services are now operational on PORT ${process.env.PORT}`);
-
-  if (process.env.SLACK_TOKEN) {
-    let bot = new SlackBot();
-    console.log(`🍃  Parakeet slack integration is now operational.`);
-  }
 });
-
-// TODO: Implement express-style app, so we can make it easier to add multi-slack support later on.
-// TODO: Implement a command listener that allows the bot to trigger the main functionality sequence.
-// It will look something like the following:
-// 1. User -> Runs the command "/enki" or similar.
-// 2. Bot -> Responds with a menu list of topics available, with option to select.
-// 3. User -> Responds via emoji with the topic they would like to work on.
-// 4. Bot -> Responds with the next challenge available, if previous are done continue where left off.
-// 5. <-> This would be the actual sequence where they work on the challenge
