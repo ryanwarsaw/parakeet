@@ -1,47 +1,51 @@
 const dotenv = require("dotenv").config();
-const { IncomingWebhook, WebClient } = require("@slack/client");
-const { Curriculum, GitHub } = require("curriculum-tools").content;
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-
-const client = new WebClient(process.env.SLACK_TOKEN);
-const webhook = new IncomingWebhook(process.env.SLACK_WEB_HOOK_URL);
-const curriculum = new Curriculum(new GitHub("submodules"));
+const { SlackBot } = require("./bot");
 
 let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/**
+ * Serves a static HTML page, this is for adding the Slack "add integration" button.
+ **/
 app.get("/", (req, res) => {
-  // Serve an asset here, like an HTML page.
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
+/**
+ * POST request triggered by Slack anytime a user types the command "/enki" in chat.
+ **/
 app.post("/commands/enki", (req, res) => {
   let payload = req.body;
+
+  // Verify that the request is coming from Slack's servers and nobody else.
   if (!payload || payload.token !== process.env.SLACK_VERIFICATION_TOKEN) {
     const errMessage = "🍃 Parakeet received a POST request from Slack with an invalid " +
-      "Validation token provided, did you set it properly in your environment file?";
+      "Verification token provided, did you set it properly in your environment file?";
     console.log(errMessage);
     return res.status(401).end(errMessage);
   }
+
   console.log(req.body);
   res.status(200).end();
 });
 
+/**
+ * Starts the express server, and initializes the bot. At this point user interaction is accepted.
+ **/
 app.listen(process.env.PORT, (err) => {
   if (err) throw err;
 
   console.log(`🍃  Parakeet web services are now operational on PORT ${process.env.PORT}`);
 
   if (process.env.SLACK_TOKEN) {
+    let bot = new SlackBot();
     console.log(`🍃  Parakeet slack integration is now operational.`);
-    // TODO: Initialize the bot, start accepting user interaction.
   }
 });
-
-//console.log(curriculum.topics);
 
 // TODO: Implement express-style app, so we can make it easier to add multi-slack support later on.
 // TODO: Implement a command listener that allows the bot to trigger the main functionality sequence.
