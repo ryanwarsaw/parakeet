@@ -18,6 +18,11 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
+app.post("/commands/enki", (req, res) => {
+  console.log(req.body);
+  res.status(200).end();
+});
+
 app.listen(process.env.PORT, (err) => {
   if (err) throw err;
 
@@ -29,7 +34,7 @@ app.listen(process.env.PORT, (err) => {
   }
 });
 
-console.log(curriculum.topics);
+//console.log(curriculum.topics);
 
 // TODO: Implement express-style app, so we can make it easier to add multi-slack support later on.
 // TODO: Implement a command listener that allows the bot to trigger the main functionality sequence.
