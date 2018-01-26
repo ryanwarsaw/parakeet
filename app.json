@@ -1,0 +1,20 @@
+{
+  "name": "Parakeet",
+  "description": "Chat bot that quizzes you on programming concepts and topics.",
+  "repository": "https://github.com/ryanwarsaw/parakeet",
+  "env": {
+    "SLACK_WEB_HOOK_URL": {
+      "description": "The web hook URL associated with your new Slack team integration.",
+      "required": true
+    },
+    "SLACK_TOKEN": {
+      "description": "The OAuth token associated with your new Slack team integration.",
+      "required": true
+    },
+    "PORT": {
+      "description": "The port that express is running on.",
+      "required": true
+    }
+  },
+  "image": "heroku/nodejs"
+}

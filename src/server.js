@@ -27,7 +27,7 @@ app.listen(process.env.PORT, (err) => {
     console.log(`🍃  Parakeet slack integration is now operational.`);
     // TODO: Initialize the bot, start accepting user interaction.
   }
-})
+});
 
 console.log(curriculum.topics);
 
