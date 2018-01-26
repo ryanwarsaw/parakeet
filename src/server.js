@@ -19,6 +19,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/commands/enki", (req, res) => {
+  let payload = req.body;
+  if (!payload || payload.token !== process.env.SLACK_VERIFICATION_TOKEN) {
+    const errMessage = "🍃 Parakeet received a POST request from Slack with an invalid " +
+      "Validation token provided, did you set it properly in your environment file?";
+    return res.status(401).end(errMessage);
+  }
   console.log(req.body);
   res.status(200).end();
 });
