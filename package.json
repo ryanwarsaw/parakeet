@@ -2,10 +2,10 @@
   "name": "parakeet",
   "version": "1.0.0",
   "description": "Enki hiring challenge for Ryan Warsaw",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "dependencies": {
     "@slack/client": "^3.15.0",
     "curriculum-tools": "git+https://github.com/ryanwarsaw/curriculum-tools.git",
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "levelup": "^2.0.1"
   }
 }
