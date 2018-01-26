@@ -1,0 +1,6 @@
+[submodule "submodules/curriculum"]
+	path = submodules/curriculum
+	url = https://github.com/enkidevs/curriculum.git
+[submodule "submodules/standards"]
+	path = submodules/standards
+	url = https://github.com/sagelabs/standards.git
