@@ -30,7 +30,7 @@ app.post("/commands/enki", (req, res) => {
     return res.status(401).end(errMessage);
   }
 
-  // TODO: Command handler for bot called here.
+  bot.commandHandler("enki", payload.channel_id);
   res.status(200).end();
 });
 
