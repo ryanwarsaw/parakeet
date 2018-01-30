@@ -19,13 +19,13 @@ class SlackBot {
     }
 
     this.populateQuestionBase();
-    console.log(JSON.stringify(this.questions, null, 2));
+    //console.log(JSON.stringify(this.questions, null, 2));
   }
 
   commandHandler(name, channel_id) {
-    this.client.chat.postMessage(channel_id, "Hey, there.").then((res) => {
-      console.log("Message sent: ", res.ts);
-    }).catch(console.error);
+    //this.client.chat.postMessage(channel_id, "Hey, there.").then((res) => {
+    //  console.log("Message sent: ", res.ts);
+    //}).catch(console.error);
   }
 
   /**
