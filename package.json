@@ -1,7 +1,7 @@
 {
   "name": "parakeet",
   "version": "1.0.0",
-  "description": "Enki hiring challenge for Ryan Warsaw",
+  "description": ":leaves: Chat bot that quizzes you on programming concepts and topics",
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,8 +14,7 @@
   "keywords": [
     "slack-bot",
     "slack-api",
-    "slack",
-    "enki"
+    "slack"
   ],
   "author": "Ryan Warsaw",
   "license": "MPL-2.0",

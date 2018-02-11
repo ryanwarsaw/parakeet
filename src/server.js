@@ -32,7 +32,7 @@ app.post("/commands/enki", (req, res) => {
 
   // Trigger the command handler, and pass in the user_id, and channel_id.
   bot.commandHandler(payload.user_id, payload.channel_id);
-  res.status(200).end();
+  res.end();
 });
 
 /**
@@ -51,7 +51,7 @@ app.post("/actions/enki", (req, res) => {
 
   // Trigger the action handler, pass in the user id and action information.
   bot.actionHandler(payload.user.id, payload.channel.id, payload.actions[0], payload.response_url);
-  res.status(200).end();
+  res.end();
 });
 
 /**

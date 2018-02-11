@@ -58,13 +58,15 @@ class SlackBot {
       ]
     };
 
-    for (var i = 0; i < question.answers.length; i++) {
-      attachments["attachments"][0]["text"] += `*${i + 1}.* ${question.answers[i]} \n`
+    const random_question = question.answers.keys().sort(() => Math.random() - 0.50);
+
+    for (let i = 0; i < question.answers.length; i++) {
+      attachments["attachments"][0]["text"] += `*${i + 1}.* ${question.answers[random_question[i]]} \n`
       attachments["attachments"][0]["actions"].push({
         "name": "answer",
         "text": i + 1,
         "type": "button",
-        "value": `${i}`
+        "value": `${random_question[i]}`
       });
     }
 
@@ -88,11 +90,15 @@ class SlackBot {
 
     let user = JSON.parse(new Buffer(await store.get(user_id)).toString());
     let answerChoice = action.value;
-    user["javascript"]["courses"]["node"]["questions"]["unanswered"]--;
 
-    // TODO: Implement validation, not for now because we don't have Enki answer information.
+    if (answerChoice === "0") {
+      this.client.chat.postEphemeral(channel_id, ":white_check_mark: Great job!", user_id);
+    } else {
+      this.client.chat.postEphemeral(channel_id, ":white_check_mark: You're wrong.", user_id);
+    }
+
+    user["javascript"]["courses"]["node"]["questions"]["unanswered"]--;
     await store.put(user_id, JSON.stringify(user));
-    this.client.chat.postEphemeral(channel_id, ":white_check_mark: Great job, actual validation is coming soon!", user_id);
   }
 
   /**

@@ -67,4 +67,4 @@ typings/
 submodules/curriculum.wiki/
 
 # LevelDB folder
-database/
+db/
